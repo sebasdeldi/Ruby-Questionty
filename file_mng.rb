@@ -51,15 +51,16 @@ class File_mng
 	end
 
 	def play
+		puntaje = 0
 		arrange_arrays
 		puts
 
-
+=begin
 		puts "PREGUNTAS = #{@preguntas}"
 		puts
 		puts "RESPUESTAS = #{@respuestas}"
 		puts
-
+=end
 			
 		@preguntas.each_with_index do |pregunta, i|
 
@@ -68,23 +69,37 @@ class File_mng
 			puts "INGRESA TU RESPUESTA"
 			puts
 			respuesta = gets.chomp
+			puts
 
 			until respuesta == @respuestas[i]
-				puts
+
+				puntaje = puntaje - 2
 				puts "INCORRECTO ! VUELVE A INTENTARLO"
 				puts
-				puts @preguntas[i-1]
-				break
+				puts
+				puts
+				puts pregunta
+				puts
+				puts "INGRESA TU RESPUESTA"
+				puts
+				respuesta = gets.chomp
+				puts
+
 			end
 				
 			if respuesta == @respuestas[i]
-				puts
+				puntaje = puntaje + 1
 				puts "CORRECTO !"
+				puts
+				puts
 				puts
 			end
 		end
-		puts
-		puts "SE ACABARON LAS PREGUNTAS, FELICITACIONES!"
+		if puntaje > 0
+			puts "TU PUNTAJE ES: #{puntaje}, TU BALANCE ES POSITIVO, CONTINUA ASÍ !"
+		else
+			puts "TU PUNTAJE ES: #{puntaje}, TU BALANCE ES NEGATIVO, ESFUERZATE MÁS !"
+		end
 	end
 
 	def arrange_arrays
